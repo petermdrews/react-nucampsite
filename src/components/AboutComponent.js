@@ -9,8 +9,8 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-function About(props) {
-  const partners = props.partners.map((partner) => {
+function About({ partners }) {
+  partners = partners.map((partner) => {
     return (
       <Media tag="li" key={partner.id}>
         <RenderPartner partner={partner} />
