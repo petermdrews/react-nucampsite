@@ -8,7 +8,7 @@ import {
   Col,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Control, LocalForm, Errors } from "react-redux-form";
+import { Control, Form, Errors, actions } from "react-redux-form";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -43,6 +43,7 @@ class Contact extends Component {
   handleSubmit(values) {
     console.log("Current state is: " + JSON.stringify(values));
     alert("Current state is: " + JSON.stringify(values));
+    this.props.resetFeedbackForm();
   }
 
   render() {
@@ -92,7 +93,10 @@ class Contact extends Component {
             <hr />
           </div>
           <div className="col-md-10">
-            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+            <Form
+              model="feedbackForm"
+              onSubmit={(values) => this.handleSubmit(values)}
+            >
               <Row className="form-group">
                 <Label htmlFor="firstName" md={2}>
                   First Name
@@ -116,9 +120,9 @@ class Contact extends Component {
                     show="touched"
                     component="div"
                     messages={{
-                      required: 'Required',
-                      minLength: 'Must be at least 2 characters',
-                      maxLength: 'Must be 15 characters or less'
+                      required: "Required",
+                      minLength: "Must be at least 2 characters",
+                      maxLength: "Must be 15 characters or less",
                     }}
                   />
                 </Col>
@@ -146,9 +150,9 @@ class Contact extends Component {
                     show="touched"
                     component="div"
                     messages={{
-                      required: 'Required',
-                      minLength: 'Must be at least 2 characters',
-                      maxLength: 'Must be 15 characters or less'
+                      required: "Required",
+                      minLength: "Must be at least 2 characters",
+                      maxLength: "Must be 15 characters or less",
                     }}
                   />
                 </Col>
@@ -168,7 +172,7 @@ class Contact extends Component {
                       required,
                       minLength: minLength(10),
                       maxLength: maxLength(15),
-                      isNumber
+                      isNumber,
                     }}
                   />
                   <Errors
@@ -177,10 +181,10 @@ class Contact extends Component {
                     show="touched"
                     component="div"
                     messages={{
-                      required: 'Required',
-                      minLength: 'Must be at least 10 numbers',
-                      maxLength: 'Must be 15 numbers or less',
-                      isNumber: "Must be a number"
+                      required: "Required",
+                      minLength: "Must be at least 10 numbers",
+                      maxLength: "Must be 15 numbers or less",
+                      isNumber: "Must be a number",
                     }}
                   />
                 </Col>
@@ -198,7 +202,7 @@ class Contact extends Component {
                     className="form-control"
                     validators={{
                       required,
-                      validEmail
+                      validEmail,
                     }}
                   />
                   <Errors
@@ -207,8 +211,8 @@ class Contact extends Component {
                     show="touched"
                     component="div"
                     messages={{
-                      required: 'Required',
-                      validEmail: "Invalid email address"
+                      required: "Required",
+                      validEmail: "Invalid email address",
                     }}
                   />
                 </Col>
@@ -258,7 +262,7 @@ class Contact extends Component {
                   </Button>
                 </Col>
               </Row>
-            </LocalForm>
+            </Form>
           </div>
         </div>
       </div>
