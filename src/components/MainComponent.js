@@ -10,10 +10,18 @@ import { connect } from "react-redux";
 import { actions } from "react-redux-form";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import {
+<<<<<<< HEAD
   addComment,
   fetchCampsites,
   fetchComments,
   fetchPromotions,
+=======
+  postComment,
+  fetchCampsites,
+  fetchComments,
+  fetchPromotions,
+  fetchPartners,
+>>>>>>> 61d0f039577f0f4ea7a9f6b99182332608d2766a
 } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
@@ -26,12 +34,16 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  addComment: (campsiteId, rating, author, text) =>
-    addComment(campsiteId, rating, author, text),
+  postComment: (campsiteId, rating, author, text) =>
+    postComment(campsiteId, rating, author, text),
   fetchCampsites: () => fetchCampsites(),
   resetFeedbackForm: () => actions.reset("feedbackForm"),
   fetchComments: () => fetchComments(),
   fetchPromotions: () => fetchPromotions(),
+<<<<<<< HEAD
+=======
+  fetchPartners: () => fetchPartners(),
+>>>>>>> 61d0f039577f0f4ea7a9f6b99182332608d2766a
 };
 
 class Main extends Component {
@@ -39,6 +51,10 @@ class Main extends Component {
     this.props.fetchCampsites();
     this.props.fetchComments();
     this.props.fetchPromotions();
+<<<<<<< HEAD
+=======
+    this.props.fetchPartners();
+>>>>>>> 61d0f039577f0f4ea7a9f6b99182332608d2766a
   }
 
   render() {
@@ -56,10 +72,23 @@ class Main extends Component {
             this.props.promotions.promotions.filter(
               (promotion) => promotion.featured
             )[0]
+<<<<<<< HEAD
           }
           promotionLoading={this.props.promotions.isLoading}
           promotionErrMess={this.props.promotions.errMess}
           partner={this.props.partners.filter((partner) => partner.featured)[0]}
+=======
+          }
+          promotionLoading={this.props.promotions.isLoading}
+          promotionErrMess={this.props.promotions.errMess}
+          partner={
+            this.props.partners.partners.filter(
+              (partner) => partner.featured
+            )[0]
+          }
+          partnersLoading={this.props.partners.isLoading}
+          partnersErrMess={this.props.partners.errMess}
+>>>>>>> 61d0f039577f0f4ea7a9f6b99182332608d2766a
         />
       );
     };
@@ -78,7 +107,11 @@ class Main extends Component {
             (comment) => comment.campsiteId === +match.params.campsiteId
           )}
           commentsErrMess={this.props.comments.errMess}
+<<<<<<< HEAD
           addComment={this.props.addComment}
+=======
+          postComment={this.props.postComment}
+>>>>>>> 61d0f039577f0f4ea7a9f6b99182332608d2766a
         />
       );
     };
